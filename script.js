@@ -4,8 +4,6 @@ const boards = document.querySelectorAll('.board')
 const countToDo = document.getElementById('count-toDo')
 
 
-
-
 boards.forEach((board)=>{
     board.addEventListener('dragover',(e)=>{
         e.preventDefault()
