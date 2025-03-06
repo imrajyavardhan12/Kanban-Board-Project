@@ -38,8 +38,8 @@
     cursor: pointer;
 }
 
-.count{
-    border: 1px solid black;
+.count-task{
+    border: 2px solid orange;
     margin-left: 10px;
     font-size: 0.8rem;
     color: grey;
