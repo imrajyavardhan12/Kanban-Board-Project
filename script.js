@@ -36,16 +36,52 @@ function attachDragEvent(item){
     })
 }
 
-
-addBtn.addEventListener('click', ()=>{
-    const taskData = prompt('Enter task');
-    let taskItem = document.createElement('p')
-    taskItem.innerText = taskData;
-    taskItem.classList.add('tasks')
+function addTask(){
+    const taskData = prompt(`Enter task`);
+    if(!taskData){
+        return
+    }
+    let taskItem = document.createElement('p');
+    taskItem.textContent = taskData;
+    addDelBtn(taskItem);
+    addEditBtn(taskItem);
+    taskItem.classList.add('tasks');
     taskItem.setAttribute('draggable',true);
     toDoBoard.appendChild(taskItem);
     attachDragEvent(taskItem);
-    countToDo.innerText = toDoBoard.children.length-1
+    countToDo.innerText = toDoBoard.children.length-1;
+
+}
+
+function addDelBtn(task){
+    const delBtn = document.createElement('button');
+    delBtn.textContent = '❌';
+    delBtn.classList.add('delBtn');
+    task.appendChild(delBtn);
+    delBtn.addEventListener('click',()=>{
+        const parentBoard = task.parentElement;
+        task.remove();
+        const countEle = parentBoard.getElementsByTagName('span')[0];
+        countEle.innerText = parentBoard.children.length-1;
+    })
+}
+
+function addEditBtn(task){
+    let editBtn = document.createElement('button');
+    editBtn.textContent = '✍️';
+    editBtn.classList.add('editBtn');
+    task.appendChild(editBtn);
+    editBtn.addEventListener('click',()=>{
+        const taskData = prompt('enter new task');
+        if(taskData){
+            task.firstChild.nodeValue = taskData;
+
+        }
+    })
+}
+
+addBtn.addEventListener('click', ()=>{
+    addTask()
 
 })
 
